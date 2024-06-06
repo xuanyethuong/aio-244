@@ -46,17 +46,64 @@ def eLU_func(x,alpha):
         eLU_value = alpha*(math.exp(x)-1)
     eLU_value = x
     print (f"Giá trị hàm eLU của {x} là: {eLU_value}")
-def activation_function(x,alpha):
+def activation(x, alpha, act_name):
     if not is_number(x):
         print ("must be a number")
         return
+    if act_name == 'sigmoid':
+        return sig_func(x)
+    elif act_name == 'relu':
+        return reLU_func(x)
+    elif act_name == 'elu':
+        return eLU_func(x,alpha)
     else:
-        sig_f = sig_func(x)
-        reLU_f = reLU_func(x)
-        eLU_f = eLU_func(x,alpha)
+        raise ValueError("Tên hàm không hợp lệ")
+def calc_ae(y, y_hat):
+    return abs(y - y_hat)
+def calc_se(y, y_hat):
+    return (y - y_hat) ** 2
+def calc_approx_cos(x, n):
+    cos_approx = 0
+    for k in range(n + 1):
+        term = ((-1) ** k) * (x ** (2 * k)) / math.factorial(2 * k)
+        cos_approx += term
+    return cos_approx
+def calc_approx_sin(x, n):
+    sin_approx = 0
+    for k in range(n + 1):
+        term = ((-1) ** k) * (x ** (2 * k + 1)) / math.factorial(2 * k + 1)
+        sin_approx += term
+    return sin_approx
+def calc_approx_sinh(x, n):
+    sinh_approx = 0
+    for k in range(n + 1):
+        term = (x ** (2 * k + 1)) / math.factorial(2 * k + 1)
+        sinh_approx += term
+    return sinh_approx
+def calc_approx_cosh(x, n):
+    cosh_approx = 0
+    for k in range(n + 1):
+        term = (x ** (2 * k)) / math.factorial(2 * k)
+        cosh_approx += term
+    return cosh_approx
+
+### hàm chính 
 if __name__ == "__main__":
     evalute_classification(2, 3, 5)
     # Test hàm activation_function
-    x = 10  # Thay đổi giá trị x để kiểm tra các trường hợp khác nhau
-    alpha = 1.0
-    activation_function(x, alpha)
+    alpha = 2
+    activation(3, alpha,'sigmoid')
+    activation(1, alpha,'relu')
+    activation(-1, alpha,'elu')
+    absolute_error = calc_ae(2, 9)
+    print(f"absolute error: {absolute_error}")
+    squared_error = calc_se(2, 1)
+    print(f"squared error: {squared_error}")
+    approx_cos = calc_approx_cos(3.14, 10)
+    print(f"approx_cos: {approx_cos}")
+    approx_sin = calc_approx_sin(3.14, 10)
+    print(f"approx_sin: {approx_sin}")
+    approx_sinh = calc_approx_sinh(3.14, 10)
+    print(f"approx_sinh: {approx_sinh}")
+    approx_cosh = calc_approx_cosh(3.14, 10)
+    print(f"approx_cosh: {approx_cosh}")
