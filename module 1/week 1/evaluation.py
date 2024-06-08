@@ -12,9 +12,9 @@ def evalute_classification(tp,fp,fn):
         print ('tp and fp and fn must be greater than zero')
         return
     Precision = tp/(tp + fp)
-    Recall = tp/(tp+ fn)
-    F1_score = 2*((Precision*Recall)/(Precision + Recall))
-    print (f"Precision:{Precision}, Recall: {Recall}, F1_score: {F1_score}")
+    Recall = tp/(tp + fn)
+    F1_score = 2 * ((Precision*Recall)/(Precision + Recall))
+    print (f"Precision: {Precision}, Recall: {Recall}, F1_score: {F1_score}")
 import math
 def is_number(value):
     try:
@@ -23,7 +23,7 @@ def is_number(value):
     except ValueError:
         return False
 def sig_func(x):
-    sig = 1/(1+math.exp(-x))
+    sig = 1/(1 + math.exp(-x))
     print (f"Sigmoid value of {x} is: {sig}")
 def reLU_func(x):
     if x <= 0:
