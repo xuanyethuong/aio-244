@@ -13,8 +13,8 @@ def evalute_classification(tp,fp,fn):
         return
     Precision = tp/(tp + fp)
     Recall = tp/(tp+ fn)
-    F1_score = 2*((Precision*Recall)/(Precision + Recall))
-    print (f"Precision:{Precision}, Recall: {Recall}, F1_score: {F1_score}")
+    F1_score = 2 * ((Precision * Recall)/(Precision + Recall))
+    print (f"Precision :{Precision}, Recall : {Recall}, F1_score : {F1_score}")
 import math
 def is_number(value):
     try:
@@ -23,7 +23,7 @@ def is_number(value):
     except ValueError:
         return False
 def sig_func(x):
-    sig = 1/(1+math.exp(-x))
+    sig = 1/(1 + math.exp(-x))
     print (f"Sigmoid value of {x} is: {sig}")
 def reLU_func(x):
     if x <= 0:
@@ -32,7 +32,7 @@ def reLU_func(x):
     print (f"reLU value of {x} is: {reLU_value}")
 def eLU_func(x,alpha):
     if x <= 0:
-        eLU_value = alpha*(math.exp(x)-1)
+        eLU_value = alpha * (math.exp(x)-1)
     eLU_value = x
     print (f"eLU value of {x} is: {eLU_value}")
 def activation(x, alpha, act_name):
@@ -44,9 +44,9 @@ def activation(x, alpha, act_name):
     elif act_name == 'relu':
         return reLU_func(x)
     elif act_name == 'elu':
-        return eLU_func(x,alpha)
+        return eLU_func(x, alpha)
     else:
-        raise ValueError(" Name Function is not valid ")
+        raise ValueError("Name Function is not valid ")
 def calc_ae(y, y_hat):
     return abs(y - y_hat)
 def calc_se(y, y_hat):
