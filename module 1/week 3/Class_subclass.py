@@ -2,7 +2,6 @@ class Person:
     def __init__(self, name, yob):
         self.name = name
         self.yob = yob
-
     def describe(self):
         return f"Name: {self.name}, Year of Birth: {self.yob}"
 
