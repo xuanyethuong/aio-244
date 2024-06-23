@@ -3,14 +3,14 @@ def levenshtein_distance(source, target):
     
     # Create a matrix to store the distances
     dp = [[0] * (n + 1) for _ in range(m + 1)]
-    
+    print(dp)
     # Initialize the first row and column of the matrix
     for i in range(m + 1):
         dp[i][0] = i
+        print(f"dp[{i}][0]:{dp[i][0]}")
     for j in range(n + 1):
         dp[0][j] = j
-
-    # Compute the Levenshtein distance
+        # Compute the Levenshtein distance
     for i in range(1, m + 1):
         for j in range(1, n + 1):
             if source[i - 1] == target[j - 1]:
