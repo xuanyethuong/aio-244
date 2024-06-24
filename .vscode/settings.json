@@ -13,7 +13,7 @@
         "editor.formatOnSave": true,
         "files.autoSave": "afterDelay",
     },
-   "sonarlint.pathToNodeExecutable": "C:\\Program File\\nodejs\\node.exe",
+    "sonarlint.pathToNodeExecutable": "C:\\Program File\\nodejs\\node.exe",
     "sonarlint.connectedMode.connections.sonarcloud": [
         {
             "organizationKey": "xuanyethuong",
