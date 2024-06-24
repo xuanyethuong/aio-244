@@ -25,8 +25,11 @@ jobs:
     - name: List files in workspace
       run: ls -al
 
+    - name: List files in project directory
+      run: ls -al aio-244
+
     - name: Ensure gradlew is executable
-      run: chmod +x ./gradlew
+      run: chmod +x ./aio-244/gradlew
 
     - name: Cache Gradle packages
       uses: actions/cache@v2
@@ -38,13 +41,12 @@ jobs:
         restore-keys: ${{ runner.os }}-gradle
 
     - name: Build with Gradle
-      run: ./gradlew build
+      run: ./aio-244/gradlew build
 
     - name: SonarCloud Scan
       uses: SonarSource/sonarcloud-github-action@master
       with:
-        projectBaseDir: .
+        projectBaseDir: aio-244
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-
