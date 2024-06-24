@@ -1,4 +1,4 @@
-def check_the_number(N):  # Question 5
+def check_the_number(num):  # Question 5
     list_of_numbers = [1, 2, 3, 4]  # Example list of numbers
     results = False  # Initialize results as False
     # Loop through the range (1, 5)
@@ -6,7 +6,7 @@ def check_the_number(N):  # Question 5
         # Append current value of i to list_of_numbers
         list_of_numbers.append(i)
 
-    if N in list_of_numbers:
+    if num in list_of_numbers:
         results = True  # Set results to True if N is found in list_of_numbers
 
     return results
@@ -47,7 +47,7 @@ def my_function9(n):  # Question 9
     return max_value
 
 
-def My_function10(integers, number=1):  # Question 10
+def my_function10(integers, number=1):  # Question 10
     return any(element == number for element in integers)
 
 
@@ -106,6 +106,7 @@ if __name__ == '__main__':
     my_list = [10, 2, 5, 0, 1]
     max = 2
     min = 1
+    print("Câu 6")
     print(my_function(max=max, min=min, data=my_list))
     # Question 7:
     list_num1 = ['a', 2, 5]
@@ -129,9 +130,9 @@ if __name__ == '__main__':
     print(my_function9(my_list9))
     # Question 10:
     my_list = [1, 3, 9, 4]
-    assert My_function10(my_list, -1) == False
+    assert my_function10(my_list, -1) == False
     my_list = [1, 2, 3, 4]
-    print(My_function10(my_list, 2))
+    print(my_function10(my_list, 2))
     # Question 11:
     assert my_function11([4, 6, 8]) == 6
     print(my_function11())

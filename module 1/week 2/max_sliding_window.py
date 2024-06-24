@@ -22,10 +22,6 @@ def max_sliding_window(num_list, k):
 
 if __name__ == '__main__':
     # Test
-    num_list = [3, 4, 5, 1, -44, 5, 10, 12, 33, 1]
-    #k = 3
-    #print(max_sliding_window(num_list, k))
-    assert max_sliding_window([3 , 4 , 5 , 1 , -44] , 3) == [5, 5, 5]
-    num_list = [3, 4, 5, 1, -44 , 5 ,10, 12 ,33, 1]
+    num_list1 = [3, 4, 5, 1, -44 , 5 ,10, 12 ,33, 1]
     k = 3
-    print (max_sliding_window( num_list , k))
+    print (max_sliding_window(num_list1 , k))
