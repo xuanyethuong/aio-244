@@ -26,7 +26,7 @@ jobs:
       run: ls -al
 
     - name: List files in project directory
-      run: ls -al aio-244
+      run: ls -al ./aio-244
 
     - name: Ensure gradlew is executable
       run: chmod +x ./aio-244/gradlew
