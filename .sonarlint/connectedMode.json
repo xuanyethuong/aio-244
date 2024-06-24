@@ -1,5 +1,4 @@
 {
-    {
         "workbench.colorTheme": "Default Dark Modern",
         "window.zoomLevel": 2,
         "editor.unicodeHighlight.allowedCharacters": {
@@ -23,5 +22,4 @@
         "sonarCloudOrganization": "xuanyethuong",
         "projectKey": "xuanyethuong_aio-244"
     
-    }
 }
