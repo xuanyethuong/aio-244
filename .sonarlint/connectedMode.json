@@ -16,10 +16,11 @@
         "sonarlint.connectedMode.connections.sonarcloud": [
             {
                 "organizationKey": "xuanyethuong",
-                "connectionId": "xuanyethuong"
+                "connectionId": "xuanyethuong",
+                "sonarCloudOrganization": "xuanyethuong",
+                "projectKey": "xuanyethuong_aio-244"
             }
         ],
-        "sonarCloudOrganization": "xuanyethuong",
-        "projectKey": "xuanyethuong_aio-244"
+        
     
 }
