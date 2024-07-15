@@ -1,0 +1,237 @@
+# Câu 1:
+import matplotlib.image as mpimg
+import gdown
+import pandas as pd
+import numpy as np
+import matplotlib.pyplot as plt
+import cv2
+
+def compute_interest(money, period):
+    # Tính toán số tiền cuối cùng sau 'period' ngày với lãi suất hằng ngày
+    final_amount = money * (1 + 1 / period) ** period
+    return round(final_amount, 3)
+
+# Các test case ví dụ
+print(compute_interest(1, 12))   # Kết quả dự kiến: 2.613
+print(compute_interest(1, 365))  # Kết quả dự kiến: 2.714
+print(compute_interest(1, 730))  # Kết quả dự kiến: 2.716
+# Câu 2:
+def find_squared_root(a):
+    """ Find the squared root of number a """
+    EPSILON = 0.001
+    x_n = a
+    while True:
+        x_n1 = x_n - (x_n**2 - a) / (2 * x_n)
+        if abs(x_n1 - x_n) < EPSILON:
+            return x_n1
+        x_n = x_n1
+
+
+# Các test case ví dụ
+print(find_squared_root(2))  # Kết quả dự kiến: 1.4142135623746899
+print(find_squared_root(3))  # Kết quả dự kiến: 1.7320508100147276
+
+# Câu 3:
+# Đọc hình ảnh bằng OpenCV (định dạng BGR)
+image = cv2.imread('path_to_image.jpg')
+
+# Chuyển đổi từ BGR sang RGB
+image_rgb = image[:, :, [2, 1, 0]]
+
+# Hiển thị hình ảnh bằng Matplotlib (định dạng RGB)
+plt.imshow(image_rgb)
+plt.show()
+
+# Câu 4:
+# Đọc hình ảnh bằng OpenCV (định dạng BGR)
+image = cv2.imread('path_to_image.jpg')
+
+# Chuyển đổi từ BGR sang RGB
+image_rgb = image[:, :, ::-1]
+
+# Hiển thị hình ảnh bằng Matplotlib (định dạng RGB)
+plt.imshow(image_rgb)
+plt.show()
+
+
+# Câu 6:
+
+# Đọc hình ảnh từ file
+image = cv2.imread('path_to_image.jpg')
+
+# Hiển thị hình ảnh trong cửa sổ
+cv2.imshow('Image', image)
+
+# Đợi cho đến khi người dùng nhấn một phím bất kỳ
+cv2.waitKey(0)
+
+# Đóng tất cả các cửa sổ mở ra
+cv2.destroyAllWindows()
+# Câu 7:
+
+arr = np.array([1, 2, 3, 4, 5, 6])
+arr_2d = arr.reshape(2, -1)
+print(arr_2d)
+# Câu 8:
+
+arr1 = np.arange(10).reshape(2, -1)
+arr2 = np.repeat(1, 10).reshape(2, -1)
+c = np.concatenate([arr1, arr2], axis=1)
+print("C = ", c)
+# Câu 9:
+def maxx(x, y):
+    if x >= y:
+        return x
+    else:
+        return y
+
+a = np.array([5, 7, 9, 8, 6, 4, 5])
+b = np.array([6, 3, 4, 8, 9, 7, 1])
+pair_max = np.vectorize(maxx, otypes=[float])
+print(pair_max(a, b))
+# Câu 10:
+
+a = np.array([5, 7, 9, 8, 6, 4, 5])
+b = np.array([6, 3, 4, 8, 9, 7, 1])
+print(np.maximum(a, b))
+# Câu 11:
+
+a = np.array([5, 7, 9, 8, 6, 4, 5])
+b = np.array([6, 3, 4, 8, 9, 7, 1])
+print("Result", np.where(a < b, b, a))
+
+# Câu 12:
+# URL của tệp trên Google Drive
+url = 'https://drive.google.com/uc?id=1i9dqan21DjQoG5Q_VEvm0LrVwAlXD0vB'
+output = 'D:\\Lession\\aio2024\\100dayswithpython\\dog.jpeg'
+
+# Tải xuống tệp
+# gdown.download(url, output, quiet=False)
+
+# Đọc hình ảnh
+img = mpimg.imread(output)
+# Chuyển đổi ảnh màu sang ảnh xám dựa vào phương pháp Lightness
+
+def rgb_to_gray_lightness(image):
+    # Tính giá trị lớn nhất và giá trị nhỏ nhất trong mỗi kênh (R, G, B) cho mỗi pixel
+    max_channel = np.max(image, axis=2)
+    min_channel = np.min(image, axis=2)
+
+    # Tính giá trị trung bình của giá trị lớn nhất và giá trị nhỏ nhất
+    gray_image = (max_channel + min_channel) / 2.0
+    return gray_image
+
+# Câu 13:
+def rgb_to_gray_average(image):
+    # Tính giá trị trung bình của ba kênh (R, G, B) cho mỗi pixel
+    gray_image = np.mean(image, axis=2)
+    return gray_image
+
+
+# Chuyển đổi ảnh màu sang ảnh xám
+gray_img_02 = rgb_to_gray_average(img)
+# Chuyển đổi hình ảnh sang ảnh xám
+# gray_img_01 = rgb_to_gray_lightness(img)
+# Câu 14:
+
+def rgb_to_gray_luminosity(image):
+    # Trọng số của mỗi kênh màu (R, G, B)
+    gray_image = np.dot(image[..., :3], [0.21, 0.72, 0.07])
+    return gray_image
+
+
+# Chuyển đổi ảnh màu sang ảnh xám
+gray_img_03 = rgb_to_gray_luminosity(img)
+# Truy cập vào phần tử đầu tiên của ảnh xám
+print("Giá trị của phần tử đầu tiên của ảnh xám:", gray_img_03[0, 0])
+# Hiển thị hình ảnh
+plt.imshow(gray_img_03)
+plt.axis('off')  # Tắt hiển thị trục
+plt.show()
+
+# Cau  14:
+import requests
+url = 'https://drive.google.com/uc?id=1iA0WmVfW88HyJvTBSQDI5vesf-pgKabq'
+output_file = 'advertising1.csv'
+
+response = requests.get(url)
+
+with open(output_file, 'wb') as f:
+    f.write(response.content)
+
+import pandas as pd
+
+# Đọc dữ liệu từ file CSV vào DataFrame (đảm bảo rằng đường dẫn đến file CSV là chính xác)
+output_file = 'advertising.csv'
+df = pd.read_csv(output_file)
+
+# Tìm giá trị lớn nhất và chỉ mục tương ứng trong cột Sales
+max_value = df['Sales'].max()
+max_index = df['Sales'].idxmax()
+
+# In kết quả
+print(f"Max: {max_value} - Index: {max_index}")
+# Câu 15:
+import pandas as pd
+output_file = 'advertising.csv'
+df = pd.read_csv(output_file)
+
+# Tính giá trị trung bình của cột TV
+mean_tv = df['TV'].mean()
+
+# In kết quả
+print(f"Giá trị trung bình của cột TV là: {mean_tv}")
+# Câu 16:
+
+output_file = 'advertising.csv'
+df = pd.read_csv(output_file)
+
+# Đếm số lượng bản ghi có giá trị tại cột Sales lớn hơn hoặc bằng 20
+count_sales_ge_20 = df[df['Sales'] >= 20].shape[0]
+
+# In kết quả
+print(
+    f"Số lượng bản ghi có giá trị tại cột Sales lớn hơn hoặc bằng 20 là: {count_sales_ge_20}")
+
+filtered_df = df[df['Sales'] >= 15]
+mean_radio = filtered_df['Radio'].mean()
+
+# In kết quả
+print(
+    f"Giá trị trung bình của cột Radio thoả mãn điều kiện giá trị tương ứng trên cột Sales lớn hơn hoặc bằng 15 là: {mean_radio}")
+
+# Tính giá trị trung bình của cột Newspaper
+mean_newspaper = df['Newspaper'].mean()
+
+# Lọc các bản ghi có giá trị tại cột Newspaper lớn hơn giá trị trung bình của cột Newspaper
+filtered_df = df[df['Newspaper'] > mean_newspaper]
+
+# Tính tổng các hàng của cột Sales trong các bản ghi đã lọc
+sum_sales = filtered_df['Sales'].sum()
+
+# In kết quả
+print(
+    f"Tổng các hàng của cột Sales với điều kiện giá trị Newspaper lớn hơn giá trị trung bình của cột Newspaper là: {sum_sales}")
+
+# Tính giá trị trung bình của cột Sales
+A = df['Sales'].mean()
+
+# Tạo mảng mới scores dựa trên điều kiện cho trước
+scores = df['Sales'].apply(lambda x: 'Good' if x >
+                           A else 'Bad' if x < A else 'Average')
+
+# In kết quả scores từ chỉ mục 7 đến 9 (vì Python sử dụng chỉ mục 0 bắt đầu và [7:10] sẽ bao gồm 7, 8, 9)
+print(scores[7:10].tolist())
+
+# Tính giá trị trung bình của cột Sales
+mean_sales = df['Sales'].mean()
+
+# Tìm giá trị trên cột Sales gần nhất với giá trị trung bình
+A = df['Sales'].iloc[(df['Sales'] - mean_sales).abs().argmin()]
+
+# Tạo mảng mới scores dựa trên điều kiện cho trước
+scores = df['Sales'].apply(lambda x: 'Good' if x >
+                           A else 'Bad' if x < A else 'Average')
+
+# In kết quả scores từ chỉ mục 7 đến 9 (vì Python sử dụng chỉ mục 0 bắt đầu và [7:10] sẽ bao gồm 7, 8, 9)
+print(scores[7:10].tolist())
