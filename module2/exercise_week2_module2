@@ -1,0 +1,104 @@
+# Câu hỏi trắc nghiệm
+import numpy as np
+from numpy.linalg import norm
+
+
+def compute_vector_length(vector):
+    len_of_vector = np.linalg.norm(vector)
+    return len_of_vector
+
+
+def compute_dot_product(vector1, vector2):
+    result = np.dot(vector1, vector2)
+    return result
+
+
+def matrix_multi_vector(matrix, vector):
+    result = np.dot(matrix, vector)
+    return result
+
+
+def matrix_multi_matrix(matrix1, matrix2):
+    result = np.dot(matrix1, matrix2)
+    return result
+
+
+def inverse_matrix(matrix):
+    result = np.linalg.inv(matrix)
+    return result
+
+
+def compute_eigenvalues_eigenvectors(matrix):
+    eigenvalues, eigenvectors = np.linalg.eig(matrix)
+    return eigenvalues, eigenvectors
+
+
+def compute_cosine(matrix1, matrix2):
+    result = np.dot(matrix1, matrix2)/(norm(matrix1)*norm(matrix2))
+    return result
+
+
+def main():
+    # Câu 1:
+    vector = np.array([-2, 4, 9, 21])
+    result = compute_vector_length(vector)
+    print("kết quả câu 1 cho chiều dài vector:", round(result, 2))
+    # Câu 2:
+    v1 = np. array([0, 1, -1, 2])
+    v2 = np. array([2, 5, 1, 0])
+    result = compute_dot_product(v1, v2)
+    print("kết quả câu 2 cho tích vô hướng:", round(result, 2))
+    # Câu 3:
+    x = np. array([[1, 2], [3, 4]])
+    k = np. array([1, 2])
+    print('kết quả câu 3 : ', x.dot(k))
+    # Câu 4:
+    x = np. array([[-1, 2], [3, -4]])
+    k = np. array([1, 2])
+    print('kết quả câu 4: ', x@k)
+    # Câu 5:
+    m = np. array([[-1, 1, 1], [0, -4, 9]])
+    v = np. array([0, 2, 1])
+    result = matrix_multi_vector(m, v)
+    print("Kết quả của phép nhân ma trận với vector là:", result)
+    # Câu 6:
+    m1 = np. array([[0, 1, 2], [2, -3, 1]])
+    m2 = np. array([[1, -3], [6, 1], [0, -1]])
+    result = matrix_multi_matrix(m1, m2)
+    print("Kết quả của phép nhân hai ma trận là:\n", result)
+    # câu 7:
+    m1 = np.eye(3)
+    m2 = np. array([[1, 1, 1], [2, 2, 2], [3, 3, 3]])
+    result = m1@m2
+    print("Kết quả của phép nhân hai ma trận câu 7 là:\n", result)
+    # câu 8:
+    m1 = np.eye(2)
+    m1 = np. reshape(m1, (-1, 4))[0]
+    m2 = np. array([[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3], [4, 4, 4, 4]])
+    result = m1@m2
+    print("Kết quả của phép nhân hai ma trận câu 8 là:\n", result)
+    # Câu 9:
+    m1 = np. array([[1, 2], [3, 4]])
+    m1 = np. reshape(m1, (-1, 4), "F")[0]
+    m2 = np. array([[1, 1, 1, 1], [2, 2, 2, 2], [3, 3, 3, 3], [4, 4, 4, 4]])
+    result = m1@m2
+    print("Kết quả của phép nhân hai ma trận câu 9 là:\n", result)
+# câu 10:
+    m1 = np. array([[-2, 6], [8, -4]])
+    result = inverse_matrix(m1)
+    print("Kết quả của phép nhân hai ma trận câu 10 là:\n", result)
+# câu 11:
+    matrix = np.array([[0.9, 0.2], [0.1, 0.8]])
+    eigenvalues, eigenvectors = compute_eigenvalues_eigenvectors(matrix)
+    print("Giá trị riêng là:\n", eigenvalues)
+    print("Vector riêng là:\n", eigenvectors)
+
+# Câu 12:
+    x = np. array([1, 2, 3, 4])
+    y = np. array([1, 0, 3, 0])
+    result = compute_cosine(x, y)
+    print('compute_cosine: ', round(result, 3))
+
+
+if __name__ == "__main__":
+    main()
